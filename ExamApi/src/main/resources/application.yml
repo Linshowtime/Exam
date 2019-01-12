@@ -1,0 +1,9 @@
+spring:
+    application:
+         name: exam-api
+    hsf:
+        version: 1.0.0
+        timeout: 30000
+        serviceGroup: human
+server:
+  port: 8089
