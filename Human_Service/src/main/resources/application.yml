@@ -14,3 +14,6 @@ spring:
         password: 2016626abc
 server:
   port: 8088
+mybatis:
+  config-location: classpath:mapping/*.xml
+  type-aliases-package: com.scau.humanservice.model

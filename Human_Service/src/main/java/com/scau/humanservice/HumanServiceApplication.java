@@ -5,8 +5,10 @@
 package com.scau.humanservice;
 
 import com.taobao.pandora.boot.PandoraBootstrap;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * TODO
@@ -17,6 +19,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.scau.humanservice.mapper")
+@EnableTransactionManagement
 public class HumanServiceApplication {
     public static void main(String[] args) {
         // 启动 Pandora Boot 用于加载 Pandora 容器
