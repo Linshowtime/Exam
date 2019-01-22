@@ -1,19 +1,8 @@
 package com.scau.humanservice.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.scau.humanservice.model.User;
 
-public interface UserMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface UserMapper extends BaseMapper<User> {
 
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    User selectSelective(User user);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 }

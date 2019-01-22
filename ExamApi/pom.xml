@@ -21,6 +21,22 @@
         <groupId>com.scau.center</groupId>
         <version>1.0-SNAPSHOT</version>
     </dependency>
-</dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.55</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/eu.bitwalker/UserAgentUtils -->
+    <dependency>
+        <groupId>eu.bitwalker</groupId>
+        <artifactId>UserAgentUtils</artifactId>
+        <version>1.21</version>
+    </dependency>
 
+</dependencies>
 </project>

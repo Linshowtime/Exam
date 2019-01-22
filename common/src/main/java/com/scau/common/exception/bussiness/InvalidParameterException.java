@@ -23,7 +23,7 @@ public class InvalidParameterException extends BusinessException {
         super(exceptionCode);
     }
 
-    public InvalidParameterException(String message) {
-        super(message);
+    public InvalidParameterException(String message,int code) {
+        super(message,code);
     }
 }

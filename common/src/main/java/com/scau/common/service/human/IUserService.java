@@ -5,6 +5,7 @@
 package com.scau.common.service.human;
 
 import com.scau.common.dto.human.UserDTO;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * TODO
@@ -14,5 +15,5 @@ import com.scau.common.dto.human.UserDTO;
  * @date 2019/1/14 22:09
  */
 public interface IUserService {
-     boolean register(UserDTO userDTO);
+     void register( UserDTO userDTO);
 }

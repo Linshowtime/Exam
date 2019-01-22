@@ -30,4 +30,14 @@ public class HumanConsumerBeans {
         hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
         return  hsfSpringConsumerBean;
     }
+
+    @Bean(initMethod = "init", name = "userService")
+    public HSFSpringConsumerBean userService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.human.IUserService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
 }

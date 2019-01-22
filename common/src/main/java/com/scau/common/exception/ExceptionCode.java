@@ -12,7 +12,7 @@ package com.scau.common.exception;
  * @date 2019/1/14 21:59
  */
 public enum ExceptionCode {
-    EXIST_STUDENT_ERROR(10001,"该用户已存在");
+    EXIST_REGISTER_NO_ERROR(10001,"该账号已存在"), EXIST_PHONE(10002,"该号码已注册"),INVAILD_PARAMETER(10003,"无效参数");
     private int code;//错误码
     private String msg;//描述信息
     ExceptionCode(int code, String msg) {
