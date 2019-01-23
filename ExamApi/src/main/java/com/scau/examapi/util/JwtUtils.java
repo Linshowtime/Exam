@@ -19,7 +19,7 @@ import java.util.Map;
  * @version V1.0
  * @date 2019/1/16 23:45
  */
-public class JWTUtil {
+public class JwtUtils {
     /**
      * 密钥
      */

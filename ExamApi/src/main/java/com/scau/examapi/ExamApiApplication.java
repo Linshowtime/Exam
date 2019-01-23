@@ -7,15 +7,17 @@ package com.scau.examapi;
 import com.taobao.pandora.boot.PandoraBootstrap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
- * TODO
+ * 启动类
  *
  * @author showtime
  * @version V1.0
  * @date 2019/1/12 19:11
  */
 @SpringBootApplication
+@ServletComponentScan
 public class ExamApiApplication {
     public static void main(String[] args) {
         // 启动 Pandora Boot 用于加载 Pandora 容器

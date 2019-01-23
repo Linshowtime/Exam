@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
    private  UserMapper userMapper;
     public void register(  UserDTO userDTO) {
        Wrapper<User> wrapper = new QueryWrapper<User>().eq("register_no",userDTO.getRegisterNo()).
-                              or().eq("phone",userDTO.getPhone());
+                                    or().eq("phone",userDTO.getPhone());
        List<User> result = userMapper.selectList(wrapper);
        result.stream().forEach(user -> {
            if(user.getRegisterNo() != null && user.getRegisterNo().equals(userDTO.getRegisterNo())){
