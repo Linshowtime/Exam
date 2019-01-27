@@ -2,37 +2,31 @@
  * Copyright (c) 2018, LinshowTime  All Rights Reserved.
  */
 
-package com.scau.common.exception;
-
-import lombok.Getter;
-import lombok.Setter;
+package com.scau.examapi.exception;
 
 /**
- * RPC服务异常基类
+ * 应用层异常类
  *
  * @author showtime
  * @version V1.0
- * @date 2019/1/14 21:46
+ * @date 2019/1/24 23:41
  */
-@Setter
-@Getter
-public class BusinessException extends RuntimeException {
+public class AppRunTimeException extends RuntimeException {
     private String msg;
     private int code;
-    public BusinessException() {
+    public AppRunTimeException() {
         super();
     }
 
-    public BusinessException(String message) {
+    public AppRunTimeException(String message) {
         super(message);
     }
-    public BusinessException(String message,int code) {
+    public AppRunTimeException(String message,int code) {
         super(message);
         this.msg = message;
         this.code = code;
     }
-
-    public BusinessException(ExceptionCode exceptionCode) {
+    public AppRunTimeException(AppErrorCodeEnum exceptionCode) {
         super(exceptionCode.getDetailMessage());
         this.msg = exceptionCode.getMsg();
         this.code = exceptionCode.getCode();

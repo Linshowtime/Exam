@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO
+ * JWT工具类
  *
  * @author showtime
  * @version V1.0

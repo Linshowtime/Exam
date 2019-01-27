@@ -3,7 +3,13 @@
  */
 
 package com.scau.examapi.net;
-
+/**
+ * 返回前端的结果类（与前端达成一致）
+ *
+ * @author showtime
+ * @version V1.0
+ * @date 2019/1/24 23:41
+ */
 public class Result {
 	private int code;// 状态码
 	private String msg;// 信息

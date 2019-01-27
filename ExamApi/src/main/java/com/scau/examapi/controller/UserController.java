@@ -4,9 +4,12 @@
 
 package com.scau.examapi.controller;
 
-import com.scau.common.dto.human.UserDTO;
+import com.scau.common.dto.human.LoginUserDTO;
+import com.scau.common.dto.human.RegisterUserDTO;
+import com.scau.common.dto.human.UpdateUserDTO;
 import com.scau.common.service.human.IUserService;
 import com.scau.examapi.net.Result;
+import com.scau.examapi.util.JwtUtils;
 import com.scau.examapi.util.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import java.util.HashMap;
 
 /**
- * TODO
+ * 用户相关应用层接口
  *
  * @author showtime
  * @version V1.0
@@ -33,9 +36,26 @@ public class UserController {
     private IUserService iUserService;
     @ApiOperation(value = "用户注册")
     @PostMapping("/register")
-    public Result register( @RequestBody UserDTO userDTO) {
+    public Result register( @RequestBody RegisterUserDTO userDTO) {
             iUserService.register(userDTO);
             return ResultUtil.success(null);
         }
+    @ApiOperation(value = "用户登录")
+    @PostMapping("/login")
+    public Result login(@RequestBody LoginUserDTO userDTO) {
+       Boolean result =  iUserService.login(userDTO);
+        HashMap<String, Object> map = new HashMap<String, Object>();
+       if(result){
+           String token = JwtUtils.encode(userDTO, 6000 * 1000 * 60 * 2);
+        map.put("token",token);
+       }
+        return ResultUtil.success(map);
+    }
+    @ApiOperation(value = "修改用户信息(包括逻辑删除)")
+    @PostMapping("/login")
+    public Result update(@RequestBody UpdateUserDTO userDTO) {
+         iUserService.modify(userDTO);
+        return ResultUtil.success(null);
+    }
     }
 

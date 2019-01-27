@@ -8,7 +8,7 @@ import com.scau.common.exception.BusinessException;
 import com.scau.common.exception.ExceptionCode;
 
 /**
- * TODO
+ * 参数异常类
  *
  * @author showtime
  * @version V1.0

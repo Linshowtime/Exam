@@ -5,7 +5,7 @@
 package com.scau.examapi.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.scau.common.dto.human.UserDTO;
+import com.scau.common.dto.human.LoginUserDTO;
 import com.scau.examapi.net.Result;
 import com.scau.examapi.util.JwtUtils;
 import org.slf4j.Logger;
@@ -52,11 +52,11 @@ public class TokenAuthorFilter implements Filter {
 			result.setCode(4);
 			result.setMsg("用户授权认证没有通过!客户端请求参数中无token信息");
 		} else {
-			if (JwtUtils.decode(token, UserDTO.class) != null) {
+			if (JwtUtils.decode(token, LoginUserDTO.class) != null) {
 				result.setCode(5);
 				result.setMsg("用户授权认证通过!");
-				request.setAttribute("registerNo", JwtUtils.decode(token, UserDTO.class).getRegisterNo());
-				request.setAttribute("role", JwtUtils.decode(token, UserDTO.class).getRole());
+				request.setAttribute("registerNo", JwtUtils.decode(token, LoginUserDTO.class).getRegisterNo());
+				request.setAttribute("role", JwtUtils.decode(token, LoginUserDTO.class).getRole());
 				isFilter = true;
 			} else {
 				result.setCode(4);

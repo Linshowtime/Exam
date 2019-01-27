@@ -4,7 +4,6 @@
 
 package com.scau.common.util;
 
-import com.scau.common.dto.BaseReqDTO;
 import com.scau.common.exception.ExceptionCode;
 import com.scau.common.exception.bussiness.InvalidParameterException;
 import org.slf4j.Logger;
@@ -15,12 +14,11 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
 /**
- * TODO
+ * 参数校验工具类
  *
  * @author showtime
  * @version V1.0

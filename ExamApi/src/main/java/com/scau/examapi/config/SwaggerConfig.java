@@ -22,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.annotation.PostConstruct;
 
 /**
- * TODO
+ * SwaggerConfig配置
  *
  * @author showtime
  * @version V1.0

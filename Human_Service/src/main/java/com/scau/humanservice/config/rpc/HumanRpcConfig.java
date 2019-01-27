@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO
+ * 人力资源服务类配置类
  *
  * @author showtime
  * @version V1.0
