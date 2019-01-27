@@ -52,8 +52,8 @@ public class UserController {
         return ResultUtil.success(map);
     }
     @ApiOperation(value = "修改用户信息(包括逻辑删除)")
-    @PostMapping("/login")
-    public Result update(@RequestBody UpdateUserDTO userDTO) {
+    @PostMapping("/modify")
+    public Result modify(@RequestBody UpdateUserDTO userDTO) {
          iUserService.modify(userDTO);
         return ResultUtil.success(null);
     }
