@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.knowledgeservice.mapper.KnowledgeTreeUseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.knowledgeservice.model.KnowledgeTreeUseInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tree_id" property="treeId" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="stage_id" property="stageId" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tree_id, org_id, stage_id, subject_id, type, update_date, create_date
+  </sql>
+
+</mapper>

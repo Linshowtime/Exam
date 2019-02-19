@@ -32,7 +32,7 @@ import java.util.Map;
  */
 @Api(value = "Message", description = "验证码短信服务相关接口")
 @RestController
-@RequestMapping("/message/api")
+@RequestMapping("human/message/api")
 public class MessageController {
     private static final String KEY = "abc123"; // KEY为自定义秘钥
     @ApiOperation(value = "发送验证码")

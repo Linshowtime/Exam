@@ -1,0 +1,19 @@
+
+spring:
+    application:
+         name: humanservice-provider
+    hsf:
+        version: 1.0.0
+        timeout: 30000
+        serviceGroup: human
+    datasource:
+        name: chatdb
+        url: jdbc:mysql://47.106.148.215:3306/exam
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+server:
+  port: 8088
+mybatis:
+  config-location: classpath:mapping/*.xml
+  type-aliases-package: com.scau.humanservice.model

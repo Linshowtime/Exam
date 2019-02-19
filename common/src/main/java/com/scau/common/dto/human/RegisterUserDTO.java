@@ -22,7 +22,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-public class RegisterUserDTO implements Serializable {
+public class   RegisterUserDTO implements Serializable {
     private static final long serialVersionUID = -5017176741270172086L;
     private String username;
     @NotBlank(message = "registerNo不能为空")
