@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.humanservice.mapper.TeacherMapper">
+    <resultMap id="BaseResultMap" type="com.scau.humanservice.model.Teacher">
+        <id column="teacher_no" property="teacherNo" jdbcType="INTEGER"/>
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+        <result column="org_id" property="orgId" jdbcType="INTEGER"/>
+        <result column="auth_status" property="authStatus" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        teacher_no, teacher_id, course_id, org_id, auth_status, name, state
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_teacher
+        where teacher_no = #{teacherNo,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_teacher
+        where teacher_no = #{teacherNo,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.scau.humanservice.model.Teacher">
+        insert into t_teacher (teacher_no, teacher_id, course_id,
+        org_id, auth_status, name,
+        state)
+        values (#{teacherNo,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER},
+        #{orgId,jdbcType=INTEGER}, #{authStatus,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{state,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.scau.humanservice.model.Teacher">
+        insert into t_teacher
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="teacherNo != null">
+                teacher_no,
+            </if>
+            <if test="teacherId != null">
+                teacher_id,
+            </if>
+            <if test="courseId != null">
+                course_id,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="authStatus != null">
+                auth_status,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="teacherNo != null">
+                #{teacherNo,jdbcType=INTEGER},
+            </if>
+            <if test="teacherId != null">
+                #{teacherId,jdbcType=INTEGER},
+            </if>
+            <if test="courseId != null">
+                #{courseId,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=INTEGER},
+            </if>
+            <if test="authStatus != null">
+                #{authStatus,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scau.humanservice.model.Teacher">
+        update t_teacher
+        <set>
+            <if test="teacherId != null">
+                teacher_id = #{teacherId,jdbcType=INTEGER},
+            </if>
+            <if test="courseId != null">
+                course_id = #{courseId,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=INTEGER},
+            </if>
+            <if test="authStatus != null">
+                auth_status = #{authStatus,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where teacher_no = #{teacherNo,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.scau.humanservice.model.Teacher">
+        update t_teacher
+        set teacher_id = #{teacherId,jdbcType=INTEGER},
+        course_id = #{courseId,jdbcType=INTEGER},
+        org_id = #{orgId,jdbcType=INTEGER},
+        auth_status = #{authStatus,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        state = #{state,jdbcType=VARCHAR}
+        where teacher_no = #{teacherNo,jdbcType=INTEGER}
+    </update>
+</mapper>

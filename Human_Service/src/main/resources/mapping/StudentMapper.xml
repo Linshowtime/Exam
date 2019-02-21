@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.humanservice.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.scau.humanservice.model.Student">
+        <id column="student_no" property="studentNo" jdbcType="INTEGER"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="class_id" property="classId" jdbcType="INTEGER"/>
+        <result column="auth_status" property="authStatus" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        student_no, student_id, class_id, auth_status, name, state
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_student
+        where student_no = #{studentNo,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from t_student
+        where student_no = #{studentNo,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.scau.humanservice.model.Student">
+        insert into t_student (student_no, student_id, class_id,
+        auth_status, name, state
+        )
+        values (#{studentNo,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER},
+        #{authStatus,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.scau.humanservice.model.Student">
+        insert into t_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="studentNo != null">
+                student_no,
+            </if>
+            <if test="studentId != null">
+                student_id,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="authStatus != null">
+                auth_status,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="studentNo != null">
+                #{studentNo,jdbcType=INTEGER},
+            </if>
+            <if test="studentId != null">
+                #{studentId,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="authStatus != null">
+                #{authStatus,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scau.humanservice.model.Student">
+        update t_student
+        <set>
+            <if test="studentId != null">
+                student_id = #{studentId,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                class_id = #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="authStatus != null">
+                auth_status = #{authStatus,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where student_no = #{studentNo,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.scau.humanservice.model.Student">
+        update t_student
+        set student_id = #{studentId,jdbcType=INTEGER},
+        class_id = #{classId,jdbcType=INTEGER},
+        auth_status = #{authStatus,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        state = #{state,jdbcType=VARCHAR}
+        where student_no = #{studentNo,jdbcType=INTEGER}
+    </update>
+</mapper>
