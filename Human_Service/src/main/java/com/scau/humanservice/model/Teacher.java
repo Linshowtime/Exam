@@ -1,5 +1,12 @@
 package com.scau.humanservice.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Getter;
+import lombok.Setter;
+
+@TableName("t_teacher")
+@Setter
+@Getter
 public class Teacher {
     private Integer teacherNo;
 

@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.scau.knowledgeservice.mapper")
+@MapperScan(basePackages ="com.scau.knowledgeservice.mapper")
 @EnableTransactionManagement
 public class KnowledgeServiceApplication {
     public static void main(String[] args) {

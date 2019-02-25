@@ -35,7 +35,7 @@ import java.util.List;
 public class UserServiceImpl implements IUserService {
    @Autowired
    private  UserMapper userMapper;
-    public void register(  RegisterUserDTO userDTO) {
+    public void register(RegisterUserDTO userDTO) {
        Wrapper<User> wrapper = new QueryWrapper<User>().eq("register_no",userDTO.getRegisterNo()).
                                     or().eq("phone",userDTO.getPhone()).eq("status",0);
        List<User> result = userMapper.selectList(wrapper);

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -21,7 +22,7 @@ public class AddKnowledgeDto implements Serializable {
     @NotBlank(message = "name不能为空")
     private String name;
 
-    @NotBlank(message = "subjectId不能为空")
-    private String subjectId;
+    @NotNull(message = "subjectId不能为空")
+    private Integer subjectId;
 
 }

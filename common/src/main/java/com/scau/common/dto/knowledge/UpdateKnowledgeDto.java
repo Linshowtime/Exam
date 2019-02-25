@@ -22,10 +22,9 @@ public class UpdateKnowledgeDto implements Serializable {
     @NotBlank(message = "知识点id不能为空")
     private String id;
 
-    @NotBlank(message = "name不能为空")
     private String name;
 
-    @NotBlank(message = "subjectId不能为空")
     private String subjectId;
 
+    private Integer state;
 }

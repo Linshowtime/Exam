@@ -2,7 +2,7 @@
  * Copyright (c) 2018, LinshowTime  All Rights Reserved.
  */
 
-package com.scau.examapi.controller;
+package com.scau.examapi.controller.Human;
 
 import com.scau.common.service.human.IEchoService;
 import io.swagger.annotations.Api;

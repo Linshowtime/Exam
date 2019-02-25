@@ -1,8 +1,19 @@
 package com.scau.knowledgeservice.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.scau.knowledgeservice.model.Knowledge;
+import java.util.List;
 
-public interface KnowledgeMapper extends BaseMapper<Knowledge> {
+import com.scau.knowledgeservice.model.Knowledge;
+import org.apache.ibatis.annotations.Param;
+public interface KnowledgeMapper {
+
+    int insert(Knowledge knowledge);
+
+    int update(Knowledge knowledge);
+
+    int delete(@Param("id") String id);
+
+    Knowledge getById(@Param("id") String id);
+
+    List<Knowledge> queryKnowledge(Knowledge knowledge);
 
 }

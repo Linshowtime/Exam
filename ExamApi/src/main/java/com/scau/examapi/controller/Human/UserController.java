@@ -2,7 +2,7 @@
  * Copyright (c) 2018, LinshowTime  All Rights Reserved.
  */
 
-package com.scau.examapi.controller;
+package com.scau.examapi.controller.Human;
 
 import com.scau.common.dto.human.LoginUserDTO;
 import com.scau.common.dto.human.RegisterUserDTO;
@@ -48,6 +48,7 @@ public class UserController {
        if(result){
            String token = JwtUtils.encode(userDTO, 6000 * 1000 * 60 * 2);
         map.put("token",token);
+        map.put("registerNo",userDTO.getRegisterNo());
        }
         return ResultUtil.success(map);
     }

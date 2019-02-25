@@ -1,32 +1,24 @@
 package com.scau.humanservice.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-
-@TableName("t_user")
+@TableName("t_course")
 @Setter
 @Getter
-public class User {
+public class Course {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
-    private String registerNo;
+    private String coursename;
 
-    private String password;
+    private String createPerson;
 
-    private Integer gender;
-
-    private String phone;
-
-    private String role;
-
-    private Integer status;
+    private String updatePerson;
 
     private Date createAt;
 

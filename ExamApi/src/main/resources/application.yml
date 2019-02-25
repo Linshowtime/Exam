@@ -4,6 +4,6 @@ spring:
     hsf:
         version: 1.0.0
         timeout: 30000
-        serviceGroup: human
+        serviceGroup: tiku
 server:
   port: 8089

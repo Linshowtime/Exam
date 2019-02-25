@@ -9,27 +9,21 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@TableName("t_user")
 @Setter
 @Getter
-public class User {
+@TableName("t_org")
+public class Org {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
-    private String registerNo;
-
-    private String password;
-
-    private Integer gender;
-
-    private String phone;
-
-    private String role;
+    private String name;
 
     private Integer status;
 
     private Date createAt;
 
     private Date updateAt;
+    @TableField(exist = false)
+    private Integer notLikeName;//是否模糊查询知识点,默认是模糊查询
 
 }

@@ -2,6 +2,7 @@ package com.scau.examapi.controller;
 
 import com.auth0.jwt.internal.org.apache.commons.lang3.StringUtils;
 import com.scau.common.dto.knowledge.AddKnowledgeDto;
+import com.scau.common.dto.knowledge.KnowledgeReqDto;
 import com.scau.common.dto.knowledge.Response.KnowledgeDto;
 import com.scau.common.dto.knowledge.UpdateKnowledgeDto;
 import com.scau.common.protocol.PageResult;
@@ -53,7 +54,7 @@ public class KnowledgeController {
 
     @ApiOperation(value = "分页查询知识点")
     @PostMapping("/query/{pageNo}/{pageSize}")
-    public Result queryKnowledge(@RequestBody UpdateKnowledgeDto knowledge, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+    public Result queryKnowledge(@RequestBody KnowledgeReqDto knowledge, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
         PageResult<KnowledgeDto> knowledgeDtoPageResult = knowledgeService.queryKnowledge(knowledge, pageNo, pageSize);
         return ResultUtil.success(knowledgeDtoPageResult);
     }

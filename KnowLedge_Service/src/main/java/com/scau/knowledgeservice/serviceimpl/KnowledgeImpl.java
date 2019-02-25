@@ -2,6 +2,7 @@ package com.scau.knowledgeservice.serviceimpl;
 
 import com.github.pagehelper.PageHelper;
 import com.scau.common.dto.knowledge.AddKnowledgeDto;
+import com.scau.common.dto.knowledge.KnowledgeReqDto;
 import com.scau.common.dto.knowledge.Response.KnowledgeDto;
 import com.scau.common.dto.knowledge.UpdateKnowledgeDto;
 import com.scau.common.exception.ExceptionCode;
@@ -62,7 +63,7 @@ public class KnowledgeImpl implements IKnowledgeService {
     }
 
     @Override
-    public PageResult<KnowledgeDto> queryKnowledge(UpdateKnowledgeDto updateKnowledgeDto, Integer pageNo, Integer pageSize) {
+    public PageResult<KnowledgeDto> queryKnowledge(KnowledgeReqDto updateKnowledgeDto, Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo, pageSize);
         Knowledge knowledge = new Knowledge();
         BeanUtils.copyProperties(updateKnowledgeDto, knowledge);
