@@ -43,6 +43,7 @@ public class TokenAuthorFilter implements Filter {
 		HttpServletResponse rep = (HttpServletResponse) response;
 		rep.setHeader("Access-Control-Allow-Origin", "*");
 		rep.setHeader("Access-Controller-Allow-Methods", "Post,GET,OPTIONS,DELETE,PATCH");
+		rep.setHeader("Access-Control-Allow-Headers", "Content-Type,token");
 		rep.setCharacterEncoding("UTF-8");
 		rep.setContentType("application/json;charset=utf-8");
 		String token = req.getHeader("token");

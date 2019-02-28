@@ -15,6 +15,7 @@
         <module>Human_Service</module>
         <module>KnowLedge_Service</module>
         <module>Paper_Service</module>
+        <module>Note_Service</module>
     </modules>
     <dependencies>
         <dependency>

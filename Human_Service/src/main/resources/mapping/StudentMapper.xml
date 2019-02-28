@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.humanservice.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.scau.humanservice.model.Student">
+        <id column="student_no" property="studentNo" jdbcType="VARCHAR"/>
+        <result column="student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="class_id" property="classId" jdbcType="INTEGER"/>
+        <result column="org_id" property="orgId" jdbcType="INTEGER"/>
+        <result column="auth_status" property="authStatus" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        student_no, student_id, class_id, auth_status, name, state,org_id
+    </sql>
+    <select id="queryStudent" parameterType="com.scau.humanservice.model.Student" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from
+        t_student k
+        <trim prefix="where" suffix="" suffixOverrides="and">
+            <if test="studentId != null">
+                k.student_id=#{studentId}
+                and
+            </if>
+            <if test="classId != null">
+                k.class_id=#{classId}
+                and
+            </if>
+            <if test="orgId != null">
+                k.org_id=#{orgId}
+                and
+            </if>
+            <if test="name != null and name !=''">
+                        k.name like concat('%',#{name},'%')
+                        and
+            </if>
+            <if test="state != null">
+                k.state=#{state}
+                and
+            </if>
+        </trim>
+    </select>
+</mapper>

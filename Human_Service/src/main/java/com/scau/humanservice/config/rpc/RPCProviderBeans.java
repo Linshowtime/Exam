@@ -4,8 +4,7 @@
 
 package com.scau.humanservice.config.rpc;
 
-import com.scau.common.service.human.IEchoService;
-import com.scau.common.service.human.IUserService;
+import com.scau.common.service.human.*;
 import com.taobao.hsf.app.spring.util.HSFSpringProviderBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +26,14 @@ public class RPCProviderBeans {
     IEchoService echoServiceImpl;
     @Resource
     IUserService userServiceImpl;
+    @Resource
+    ICourseService courseServiceImpl;
+    @Resource
+    IOrgService orgServiceImpl;
+    @Resource
+    ISegmentService segmentServiceImpl;
+    @Resource
+    IGradeService gradeServiceImpl;
     @Bean(initMethod = "init", name = "echoService")
     public HSFSpringProviderBean echoService() {
         HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
@@ -47,4 +54,45 @@ public class RPCProviderBeans {
         hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
         return hsfSpringProviderBean;
     }
+
+    @Bean(initMethod = "init", name = "courseService")
+    public HSFSpringProviderBean courseService() {
+        HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.ICourseService");
+        hsfSpringProviderBean.setTarget(courseServiceImpl);
+        hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
+        hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
+        hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
+        return hsfSpringProviderBean;
+    }
+    @Bean(initMethod = "init", name = "orgService")
+    public HSFSpringProviderBean orgService() {
+        HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.IOrgService");
+        hsfSpringProviderBean.setTarget(orgServiceImpl);
+        hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
+        hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
+        hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
+        return hsfSpringProviderBean;
+    }
+    @Bean(initMethod = "init", name = "segmentService")
+    public HSFSpringProviderBean segmentService() {
+        HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.ISegmentService");
+        hsfSpringProviderBean.setTarget(segmentServiceImpl);
+        hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
+        hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
+        hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
+        return hsfSpringProviderBean;
+    }  @Bean(initMethod = "init", name = "gradeService")
+    public HSFSpringProviderBean gradeService() {
+        HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.IGradeService");
+        hsfSpringProviderBean.setTarget(gradeServiceImpl);
+        hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
+        hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
+        hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
+        return hsfSpringProviderBean;
+    }
+
 }
