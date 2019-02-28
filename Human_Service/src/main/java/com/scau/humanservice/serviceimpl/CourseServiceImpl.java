@@ -34,4 +34,13 @@ public class CourseServiceImpl implements ICourseService {
         });
         return courseDtos;
     }
+
+    @Override
+    public CourseDto getCourseById(Integer id) {
+        Course course = courseMapper.selectById(id);
+        CourseDto courseDto = new CourseDto();
+        courseDto.setId(course.getId());
+        courseDto.setName(course.getCoursename());
+        return courseDto;
+    }
 }

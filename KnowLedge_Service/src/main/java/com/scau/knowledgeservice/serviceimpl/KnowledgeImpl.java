@@ -3,7 +3,7 @@ package com.scau.knowledgeservice.serviceimpl;
 import com.github.pagehelper.PageHelper;
 import com.scau.common.dto.knowledge.AddKnowledgeDto;
 import com.scau.common.dto.knowledge.KnowledgeReqDto;
-import com.scau.common.dto.knowledge.Response.KnowledgeDto;
+import com.scau.common.dto.knowledge.response.KnowledgeDto;
 import com.scau.common.dto.knowledge.UpdateKnowledgeDto;
 import com.scau.common.exception.ExceptionCode;
 import com.scau.common.exception.bussiness.InvalidKnowledgeException;
@@ -76,4 +76,5 @@ public class KnowledgeImpl implements IKnowledgeService {
         });
         return PageResultUtil.convertPageBean(knowledgeList, knowledgeDtoList);
     }
+
 }

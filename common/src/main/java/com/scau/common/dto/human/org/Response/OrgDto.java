@@ -19,4 +19,6 @@ public class OrgDto implements Serializable {
     private String name;
 
     private Integer status;
+
+    private Integer id;
 }

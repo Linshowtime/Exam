@@ -8,11 +8,16 @@ import com.scau.common.exception.bussiness.InvalidUserException;
 import com.scau.common.protocol.PageResult;
 import com.scau.common.service.human.IOrgService;
 import com.scau.humanservice.mapper.OrgMapper;
+import com.scau.humanservice.mapper.StudentMapper;
+import com.scau.humanservice.mapper.TeacherMapper;
 import com.scau.humanservice.model.Org;
+import com.scau.humanservice.model.Student;
+import com.scau.humanservice.model.Teacher;
 import com.scau.humanservice.util.PageResultUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +33,10 @@ import java.util.List;
 public class OrgServiceImpl implements IOrgService {
     @Autowired
     private OrgMapper orgMapper;
-
+    @Autowired
+    StudentMapper studentMapper;
+    @Autowired
+    TeacherMapper teacherMapper;
     @Override
     public void insert(OrgReqDto reqDto) {
         Org org = orgMapper.selectOne(new QueryWrapper<Org>().eq("name", reqDto.getName()));
@@ -42,11 +50,19 @@ public class OrgServiceImpl implements IOrgService {
     }
 
     @Override
+    @Transactional
     public void update(OrgReqDto reqDto) {
         Org org = new Org();
         BeanUtils.copyProperties(reqDto, org);
         orgMapper.update(org, new QueryWrapper<Org>().eq("id", reqDto.getId()));
-
+        Student student =new Student();
+        student.setOrgId(reqDto.getId());
+        student.setState(reqDto.getStatus());
+        studentMapper.update(student,new QueryWrapper<Student>().eq("org_id",student.getOrgId()));
+        Teacher teacher =new Teacher();
+        teacher.setOrgId(reqDto.getId());
+        teacher.setState(reqDto.getStatus());
+        teacherMapper.update(teacher,new QueryWrapper<Teacher>().eq("org_id",teacher.getOrgId()));
     }
 
     @Override
@@ -70,10 +86,8 @@ public class OrgServiceImpl implements IOrgService {
     }
 
     @Override
-    public List<OrgDto> queryOrgList(OrgReqDto reqDto) {
-        Org org = new Org();
-        BeanUtils.copyProperties(reqDto, org);
-        List<Org> orgs = orgMapper.queryOrg(org);
+    public List<OrgDto> queryOrgList() {
+        List<Org> orgs = orgMapper.selectList(new QueryWrapper<Org>().eq("status",0));
         List<OrgDto> orgDtos = new ArrayList<>(orgs.size());
         orgs.stream().forEach(e -> {
             OrgDto orgDto = new OrgDto();
@@ -81,5 +95,13 @@ public class OrgServiceImpl implements IOrgService {
             orgDtos.add(orgDto);
         });
         return orgDtos;
+    }
+
+    @Override
+    public OrgDto queryOrgById(Integer id) {
+      Org org = orgMapper.selectById(id);
+      OrgDto orgDto = new OrgDto();
+      BeanUtils.copyProperties(org,orgDto);
+      return orgDto;
     }
 }

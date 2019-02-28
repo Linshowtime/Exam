@@ -8,6 +8,7 @@ import com.scau.examapi.net.Result;
 import com.scau.examapi.util.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +55,17 @@ public class OrgController {
         return ResultUtil.success(orgDtoPageResult);
     }
     @ApiOperation(value = "查询学校列表")
-    @PostMapping("/query/list")
-    public Result queryOrgList(@RequestBody OrgReqDto orgReqDto) {
-        return ResultUtil.success(orgService.queryOrgList(orgReqDto));
+    @GetMapping("/query/list")
+    public Result queryOrgList() {
+        return ResultUtil.success(orgService.queryOrgList());
     }
+    @ApiOperation(value = "查询学校列表")
+    @GetMapping("/query/{id}")
+    public Result queryOrgById(@PathVariable Integer id ) {
+        return ResultUtil.success(orgService.queryOrgById(id));
+    }
+
 }
+
+
+

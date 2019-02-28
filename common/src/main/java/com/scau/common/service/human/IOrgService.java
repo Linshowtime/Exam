@@ -61,12 +61,13 @@ public interface IOrgService {
  PageResult<OrgDto> queryOrg(OrgReqDto reqDto, Integer pageNo, Integer pageSize);
  /**
   *
-  * @param reqDto
   * @return java.util.List<com.scau.common.dto.human.org.Response.OrgDto>
   * @throws
   * @author showtime
   * @date 2019-02-24
   */
 
- List<OrgDto> queryOrgList(OrgReqDto reqDto);
+ List<OrgDto> queryOrgList();
+
+ OrgDto queryOrgById(Integer id);
 }

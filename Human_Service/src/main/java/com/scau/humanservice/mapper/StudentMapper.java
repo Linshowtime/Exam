@@ -1,17 +1,10 @@
 package com.scau.humanservice.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.scau.humanservice.model.Student;
 
-public interface StudentMapper {
-    int deleteByPrimaryKey(Integer studentNo);
+import java.util.List;
 
-    int insert(Student record);
-
-    int insertSelective(Student record);
-
-    Student selectByPrimaryKey(Integer studentNo);
-
-    int updateByPrimaryKeySelective(Student record);
-
-    int updateByPrimaryKey(Student record);
+public interface StudentMapper extends BaseMapper<Student> {
+    List<Student> queryStudent(Student student);
 }

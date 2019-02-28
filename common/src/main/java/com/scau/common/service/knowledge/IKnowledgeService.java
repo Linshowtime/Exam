@@ -7,7 +7,7 @@ package com.scau.common.service.knowledge;
 
 import com.scau.common.dto.knowledge.AddKnowledgeDto;
 import com.scau.common.dto.knowledge.KnowledgeReqDto;
-import com.scau.common.dto.knowledge.Response.KnowledgeDto;
+import com.scau.common.dto.knowledge.response.KnowledgeDto;
 import com.scau.common.dto.knowledge.UpdateKnowledgeDto;
 import com.scau.common.protocol.PageResult;
 
@@ -52,4 +52,6 @@ public interface IKnowledgeService {
      * @return
      */
     PageResult<KnowledgeDto> queryKnowledge(KnowledgeReqDto knowledge, Integer pageNo, Integer pageSize);
+
+
 }

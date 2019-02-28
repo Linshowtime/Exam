@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface ICourseService {
     List<CourseDto> getAllCourse();
+    CourseDto getCourseById(Integer id);
 }

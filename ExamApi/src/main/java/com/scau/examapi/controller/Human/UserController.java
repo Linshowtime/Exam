@@ -7,6 +7,15 @@ package com.scau.examapi.controller.Human;
 import com.scau.common.dto.human.LoginUserDTO;
 import com.scau.common.dto.human.RegisterUserDTO;
 import com.scau.common.dto.human.UpdateUserDTO;
+import com.scau.common.dto.human.student.AddStudentDto;
+import com.scau.common.dto.human.student.AuthStudentDto;
+import com.scau.common.dto.human.student.StudentDto;
+import com.scau.common.dto.human.student.reponse.StudentRepDto;
+import com.scau.common.dto.human.teacher.AddTeacherDto;
+import com.scau.common.dto.human.teacher.AuthTeacherDto;
+import com.scau.common.dto.human.teacher.TeacherDto;
+import com.scau.common.dto.human.teacher.reponse.TeacherRepDto;
+import com.scau.common.protocol.PageResult;
 import com.scau.common.service.human.IUserService;
 import com.scau.examapi.net.Result;
 import com.scau.examapi.util.JwtUtils;
@@ -14,10 +23,7 @@ import com.scau.examapi.util.ResultUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -43,20 +49,74 @@ public class UserController {
     @ApiOperation(value = "用户登录")
     @PostMapping("/login")
     public Result login(@RequestBody LoginUserDTO userDTO) {
-       Boolean result =  iUserService.login(userDTO);
+        Integer result =  iUserService.login(userDTO);
         HashMap<String, Object> map = new HashMap<String, Object>();
-       if(result){
-           String token = JwtUtils.encode(userDTO, 6000 * 1000 * 60 * 2);
+        String token = JwtUtils.encode(userDTO, 6000 * 1000 * 60 * 2);
+        if(result==1) {
+            map.put("auth", 1);
+        }else {
+            map.put("auth",0);
+        }
         map.put("token",token);
         map.put("registerNo",userDTO.getRegisterNo());
-       }
         return ResultUtil.success(map);
     }
     @ApiOperation(value = "修改用户信息(包括逻辑删除)")
     @PostMapping("/modify")
     public Result modify(@RequestBody UpdateUserDTO userDTO) {
-         iUserService.modify(userDTO);
+        iUserService.modify(userDTO);
         return ResultUtil.success(null);
     }
+
+    @ApiOperation(value = "添加学生")
+    @PostMapping("/addStudent")
+    public Result addStudent(@RequestBody AddStudentDto addStudentDto) {
+        iUserService.addStudent(addStudentDto);
+        return ResultUtil.success(null);
     }
+    @ApiOperation(value = "修改学生")
+    @PostMapping("/updateStudent")
+    public Result updateStudent(@RequestBody StudentDto studentDto) {
+        iUserService.updateStudent(studentDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "学生认证")
+    @PostMapping("/authStudent")
+    public Result authStudent(@RequestBody AuthStudentDto studentDto) {
+        iUserService.authStudent(studentDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "分页查询学生")
+    @PostMapping("/query/student/{pageNo}/{pageSize}")
+    public Result queryStudent(@RequestBody StudentDto studentDto, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+       PageResult<StudentRepDto> studentRepDtoPageResult =iUserService.queryStudent(studentDto,pageNo,pageSize);
+        return ResultUtil.success(studentRepDtoPageResult);
+    }
+
+    @ApiOperation(value = "添加教师")
+    @PostMapping("/addTeacher")
+    public Result addTeacher(@RequestBody AddTeacherDto addTeacherDto) {
+        iUserService.addTeacher(addTeacherDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "修改教师")
+    @PostMapping("/updateTeacher")
+    public Result updateTeacher(@RequestBody TeacherDto teacherDto) {
+        iUserService.updateTeacher(teacherDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "教师认证")
+    @PostMapping("/authTeacher")
+    public Result authTeacher(@RequestBody AuthTeacherDto teacherDto) {
+        iUserService.authTeacher(teacherDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "分页查询教师")
+    @PostMapping("/query/teacher/{pageNo}/{pageSize}")
+    public Result queryTeacher(@RequestBody TeacherDto teacherDto, @PathVariable Integer pageNo, @PathVariable Integer pageSize) {
+        PageResult<TeacherRepDto> teacherRepDtoPageResult =iUserService.queryTeacher(teacherDto,pageNo,pageSize);
+        return ResultUtil.success(teacherRepDtoPageResult);
+    }
+
+}
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.scau.subjectservice.mapper.SubjectMapper" >
+  <resultMap id="BaseResultMap" type="com.scau.subjectservice.model.Subject" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="subject_type_id" property="subjectTypeId" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="knowledge_id" property="knowledgeId" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="choice1" property="choice1" jdbcType="VARCHAR" />
+    <result column="choice2" property="choice2" jdbcType="VARCHAR" />
+    <result column="choice3" property="choice3" jdbcType="VARCHAR" />
+    <result column="choice4" property="choice4" jdbcType="VARCHAR" />
+    <result column="difficulty" property="difficulty" jdbcType="INTEGER" />
+    <result column="analysis" property="analysis" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+    <result column="publish" property="publish" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, subject_type_id, course_id, content, knowledge_id, answer, choice1, choice2, 
+    choice3, choice4, difficulty, analysis, creator, create_at, update_at, publish,org_id
+  </sql>
+  <select id="querySubject" parameterType="com.scau.subjectservice.model.Subject" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    t_subject k
+    <trim prefix="where" suffix="" suffixOverrides="and">
+      <if test="id != null ">
+        k.id=#{id}
+        and
+      </if>
+      <if test="courseId != null ">
+        k.course_id=#{courseId}
+        and
+      </if>
+      <if test="subjectTypeId != null ">
+        k.subject_type_id=#{subjectTypeId}
+        and
+      </if>
+      <if test="orgId != null ">
+        k.org_id=#{orgId}
+        and
+      </if>
+      <if test="knowledgeId != null and knowledgeId!='' ">
+        k.knowledge_id=#{knowledgeId}
+        and
+      </if>
+      <if test="difficulty != null ">
+        k.difficulty=#{difficulty}
+        and
+      </if>
+      <if test="content != null and content !=''">
+            k.content like concat('%',#{content},'%')
+            and
+      </if>
+      <if test="publish != null">
+        k.publish=#{publish}
+        and
+      </if>
+    </trim>
+    order by k.create_at desc
+  </select>
+</mapper>

@@ -7,6 +7,7 @@ package com.scau.humanservice.test;
 import com.scau.common.dto.human.CourseDto;
 import com.scau.common.dto.human.RegisterUserDTO;
 import com.scau.common.dto.human.org.OrgReqDto;
+import com.scau.common.dto.human.student.StudentDto;
 import com.scau.common.service.human.ICourseService;
 import com.scau.common.service.human.IOrgService;
 import com.scau.common.service.human.IUserService;
@@ -70,5 +71,12 @@ public class SampleTest {
         orgReqDto.setName("华农附小");
         iOrgService.insert(orgReqDto);
     }
+    @Test
+    public void testselectStudent() {
+        System.out.println(("----- testInsertOrg method test ------"));
+       mapper.queryStudent(new StudentDto(),1,5);
+
+    }
+
 
 }

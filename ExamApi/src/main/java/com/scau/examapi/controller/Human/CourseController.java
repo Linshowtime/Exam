@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,11 @@ public class CourseController {
     @GetMapping("/getAllCourse")
     public Result getAllCourse(){
         return ResultUtil.success(courseService.getAllCourse());
+    }
+    @ApiOperation(value = "根据id获取学科")
+    @GetMapping("/course/{id}")
+    public Result getCourse(@PathVariable Integer id){
+        return ResultUtil.success(courseService.getCourseById(id));
     }
 
 }

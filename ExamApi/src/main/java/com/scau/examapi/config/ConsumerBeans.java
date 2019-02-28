@@ -67,4 +67,32 @@ public class ConsumerBeans {
         hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
         return  hsfSpringConsumerBean;
     }
+    @Bean(initMethod = "init", name = "segmentService")
+    public HSFSpringConsumerBean segmentService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.human.ISegmentService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
+    @Bean(initMethod = "init", name = "gradeService")
+    public HSFSpringConsumerBean gradeService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.human.IGradeService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
+    @Bean(initMethod = "init", name = "subjectService")
+    public HSFSpringConsumerBean subjectService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.subject.ISubjectService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
+
 }

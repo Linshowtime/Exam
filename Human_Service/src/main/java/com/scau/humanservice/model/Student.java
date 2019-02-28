@@ -8,17 +8,18 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Student {
-    private Integer studentNo;
+    private String studentNo;
 
     private Integer studentId;
 
     private Integer classId;
 
+    private Integer orgId;
+
     private Integer authStatus;
 
     private String name;
 
-    private String state;
-
+    private Integer state;
 
 }

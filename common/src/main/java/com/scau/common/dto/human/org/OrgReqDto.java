@@ -22,4 +22,6 @@ public class OrgReqDto implements Serializable {
     private String name;
 
     private Integer status;
+
+    private Integer notLikeName;//是否模糊查询知识点,默认是模糊查询
 }
