@@ -94,5 +94,13 @@ public class ConsumerBeans {
         hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
         return  hsfSpringConsumerBean;
     }
-
+    @Bean(initMethod = "init", name = "paperService")
+    public HSFSpringConsumerBean paperService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.paper.IPaperService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
 }

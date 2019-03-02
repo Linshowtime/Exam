@@ -4,13 +4,12 @@
 
 package com.scau.paperservice.rpc;
 
-import com.scau.common.service.knowledge.IKnowledgeService;
+import com.scau.common.service.paper.IPaperService;
 import com.taobao.hsf.app.spring.util.HSFSpringProviderBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
-import java.awt.print.Paper;
 
 /**
  * 对外提供服务
@@ -24,12 +23,13 @@ public class RPCProviderBeans {
     @Resource
     PaperRpcConfig paperRpcConfig;
 
-
-    @Bean(initMethod = "init", name = "knowledgeService")
-    public HSFSpringProviderBean knowledgeService() {
+    @Resource
+    IPaperService paperServiceImpl;
+    @Bean(initMethod = "init", name = "paperService")
+    public HSFSpringProviderBean paperService() {
         HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
-        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.");
-        hsfSpringProviderBean.setTarget(knowledgeServiceImpl);
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.paper.IPaperService");
+        hsfSpringProviderBean.setTarget(paperServiceImpl);
         hsfSpringProviderBean.setGroup(paperRpcConfig.getServiceGroup());
         hsfSpringProviderBean.setVersion(paperRpcConfig.getVersion());
         hsfSpringProviderBean.setClientTimeout(Integer.valueOf(paperRpcConfig.getTimeout()));

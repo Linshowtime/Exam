@@ -84,4 +84,33 @@ public class SubjectServiceImpl implements ISubjectService {
         });
         return PageResultUtil.convertPageBean(subjects,subjectDtos);
     }
+
+    @Override
+    public List<SubjectDto> querySubjectByIds(List<Integer> subjectIds) {
+        List<SubjectDto> subjectDtos = new ArrayList<>(subjectIds.size());
+        subjectIds.stream().forEach(e->{
+           Subject subject = subjectMapper.selectById(e);
+            SubjectDto subjectDto = new SubjectDto();
+            BeanUtils.copyProperties(subject,subjectDto);
+            List<String> optionLists = new ArrayList<>(4);
+            if(subject.getChoice1()!=null){
+                optionLists.add(subject.getChoice1());
+            }
+            if(subject.getChoice2()!=null){
+                optionLists.add(subject.getChoice2());
+            }
+            if(subject.getChoice3()!=null){
+                optionLists.add(subject.getChoice3());
+            }
+            if(subject.getChoice4()!=null){
+                optionLists.add(subject.getChoice4());
+            }
+            subjectDto.setOptionList(optionLists);
+            subjectDto.setCourseName(courseService.getCourseById(subject.getCourseId()).getName());
+            subjectDto.setKnowledgeName(knowledgeService.getById(subject.getKnowledgeId()).getName());
+            subjectDtos.add(subjectDto);
+
+        });
+        return subjectDtos;
+    }
 }

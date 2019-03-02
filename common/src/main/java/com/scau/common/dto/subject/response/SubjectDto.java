@@ -39,4 +39,8 @@ public class SubjectDto {
     private String analysis;
 
     private Byte publish;
+
+    private Integer orderNo;
+
+    private Double score;
 }
