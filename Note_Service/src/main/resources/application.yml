@@ -1,0 +1,17 @@
+
+spring:
+    application:
+         name: noteservice-provider
+    hsf:
+        version: 1.0.0
+        timeout: 30000
+        serviceGroup: tiku
+
+    data:
+        mongodb:
+        uri: mongodb://127.0.0.1:27017
+        database: test
+        username: admin
+        password:
+server:
+  port: 8019

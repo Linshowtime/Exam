@@ -2,12 +2,19 @@ package com.scau.paperservice;
 
 import com.scau.common.dto.paper.AddPaperDto;
 import com.scau.common.dto.paper.SubjectExamDto;
+import com.scau.common.service.human.IClassService;
+import com.scau.common.service.human.IUserService;
 import com.scau.common.service.paper.IPaperService;
+import com.scau.common.service.subject.ISubjectService;
+import com.scau.paperservice.mapper.ExamPaperMapper;
+import com.scau.paperservice.model.ExamPaper;
 import com.scau.paperservice.model.SubjectExamRel;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -18,17 +25,21 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2019-03-02 11:46
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = App.class)
 public class SampleTest {
     @Autowired
-    IPaperService paperService;
+    ExamPaperMapper examPaperMapper;
+    @MockBean
+    protected ISubjectService subjectService;
+    @MockBean
+    protected IUserService userService;
+    @MockBean
+    protected IClassService classService;
+
     @Test
     public void testSelect() {
-        System.out.println(("----- selectAll method test ------"));
-        SubjectExamDto examDto =new SubjectExamDto();
-        examDto.setExamPaperId(2);
-        examDto.setSubjectId(2);
-        paperService.addSubjectToPaper(examDto);
-        System.out.print(true);
+       ExamPaper examPaper = new ExamPaper();
+       examPaper.setName("wwee");
+      Assert.assertEquals( examPaperMapper.insert(examPaper),1);
     }
 }

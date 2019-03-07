@@ -85,6 +85,15 @@ public class ConsumerBeans {
         hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
         return  hsfSpringConsumerBean;
     }
+    @Bean(initMethod = "init", name = "classService")
+    public HSFSpringConsumerBean classService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.human.IClassService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
     @Bean(initMethod = "init", name = "subjectService")
     public HSFSpringConsumerBean subjectService(){
         HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
@@ -98,6 +107,15 @@ public class ConsumerBeans {
     public HSFSpringConsumerBean paperService(){
         HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
         hsfSpringConsumerBean.setInterface("com.scau.common.service.paper.IPaperService");
+        hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
+        hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
+        hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));
+        return  hsfSpringConsumerBean;
+    }
+    @Bean(initMethod = "init", name = "noteService")
+    public HSFSpringConsumerBean noteService(){
+        HSFSpringConsumerBean hsfSpringConsumerBean=new HSFSpringConsumerBean();
+        hsfSpringConsumerBean.setInterface("com.scau.common.service.note.INoteService");
         hsfSpringConsumerBean.setGroup(rpcConfig.getServiceGroup());
         hsfSpringConsumerBean.setVersion(rpcConfig.getVersion());
         hsfSpringConsumerBean.setClientTimeout(Integer.valueOf(rpcConfig.getTimeout()));

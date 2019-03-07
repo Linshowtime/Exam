@@ -1,8 +1,8 @@
 package com.scau.common.service.paper;
 
-import com.scau.common.dto.paper.AddPaperDto;
-import com.scau.common.dto.paper.PaperReqDto;
-import com.scau.common.dto.paper.SubjectExamDto;
+import com.scau.common.dto.paper.*;
+import com.scau.common.dto.paper.reponse.ExamRecordRepDto;
+import com.scau.common.dto.paper.reponse.ExamResultDto;
 import com.scau.common.dto.paper.reponse.PaperRepDto;
 import com.scau.common.dto.subject.response.SubjectDto;
 import com.scau.common.protocol.PageResult;
@@ -26,4 +26,9 @@ public interface IPaperService {
     void updateSubjectToPaper(List<SubjectExamDto> subjectExamDtos);
     List<Integer> searchSubjectIds(Integer paperId);
     List<SubjectDto> searchSubjects(Integer paperId);
+    void addExamRecord(ExamRecordDto examRecordDto);
+    List<ExamRecordRepDto> searchExamRecord(ExamReqDto examReqDto);
+    void submitExamAnswer(Integer recordId ,List<SubjectDto> subjectDtos);
+    ExamResultDto getExamResult(Integer recordId);
+    List<SubjectDto> searchErrorSubject(String registerNo);
 }

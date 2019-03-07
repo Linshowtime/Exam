@@ -30,4 +30,7 @@ public class PaperReqDto implements Serializable {
 
     private Integer periodId;
 
+    private Integer orgId;
+
+    private Integer state;
 }

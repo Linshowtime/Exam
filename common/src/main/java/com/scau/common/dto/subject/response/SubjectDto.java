@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * TODO
@@ -32,6 +33,8 @@ public class SubjectDto {
 
     private String answer;
 
+    private String userAnswer;
+
     private List<String> optionList;
 
     private Integer difficulty;
@@ -43,4 +46,17 @@ public class SubjectDto {
     private Integer orderNo;
 
     private Double score;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubjectDto that = (SubjectDto) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

@@ -1,9 +1,8 @@
 package com.scau.examapi.controller.Paper;
 
-import com.scau.common.dto.paper.AddPaperDto;
-import com.scau.common.dto.paper.PaperReqDto;
-import com.scau.common.dto.paper.SubjectExamDto;
+import com.scau.common.dto.paper.*;
 import com.scau.common.dto.paper.reponse.PaperRepDto;
+import com.scau.common.dto.subject.response.SubjectDto;
 import com.scau.common.protocol.PageResult;
 import com.scau.common.service.paper.IPaperService;
 import com.scau.examapi.net.Result;
@@ -80,5 +79,32 @@ public class PaperController {
     @GetMapping("subject/{paperId}")
     public Result selectSubjects(@PathVariable Integer paperId) {
         return ResultUtil.success( paperService.searchSubjects(paperId));
+    }
+    @ApiOperation(value = "发布考试")
+    @PostMapping("add/exam/record")
+    public Result addExamRecord(@RequestBody ExamRecordDto examRecordDto) {
+        paperService.addExamRecord(examRecordDto);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "获取考试信息")
+    @PostMapping("get/exam/record")
+    public Result getExamRecord(@RequestBody ExamReqDto examReqDto) {
+        return ResultUtil.success(paperService.searchExamRecord(examReqDto));
+    }
+    @ApiOperation(value = "提交考试试卷")
+    @PostMapping("submit/record/answer/{recordId}")
+    public Result submitRecordAnswer(@RequestBody List<SubjectDto> subjectDtos,@PathVariable Integer recordId) {
+        paperService.submitExamAnswer(recordId,subjectDtos);
+        return ResultUtil.success(null);
+    }
+    @ApiOperation(value = "获取考试结果")
+    @GetMapping("exam/result/{recordId}")
+    public Result getExamResult(@PathVariable Integer recordId) {
+        return ResultUtil.success( paperService.getExamResult(recordId));
+    }
+    @ApiOperation(value = "获取错题本")
+    @GetMapping("record/error/{registerNo}")
+    public Result getErrorRecord(@PathVariable String registerNo) {
+        return ResultUtil.success( paperService.searchErrorSubject(registerNo));
     }
 }

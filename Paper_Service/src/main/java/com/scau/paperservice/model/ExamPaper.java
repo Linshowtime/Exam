@@ -28,9 +28,13 @@ public class ExamPaper {
 
     private Integer type;
 
+    private Integer orgId;
+
     private Double score;
 
     private Date createAt;
 
     private Date updateAt;
+
+    private Integer state;
 }

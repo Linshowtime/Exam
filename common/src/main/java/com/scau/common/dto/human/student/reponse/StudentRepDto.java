@@ -20,4 +20,5 @@ public class StudentRepDto implements Serializable {
     private String name;
     private String orgName;
     private Integer state;
+    private Integer classId;
 }

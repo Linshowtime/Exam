@@ -34,6 +34,8 @@ public class RPCProviderBeans {
     ISegmentService segmentServiceImpl;
     @Resource
     IGradeService gradeServiceImpl;
+    @Resource
+    IClassService classServiceImpl;
     @Bean(initMethod = "init", name = "echoService")
     public HSFSpringProviderBean echoService() {
         HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
@@ -84,11 +86,22 @@ public class RPCProviderBeans {
         hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
         hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
         return hsfSpringProviderBean;
-    }  @Bean(initMethod = "init", name = "gradeService")
+    }
+    @Bean(initMethod = "init", name = "gradeService")
     public HSFSpringProviderBean gradeService() {
         HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
         hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.IGradeService");
         hsfSpringProviderBean.setTarget(gradeServiceImpl);
+        hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
+        hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
+        hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));
+        return hsfSpringProviderBean;
+    }
+    @Bean(initMethod = "init", name = "classService")
+    public HSFSpringProviderBean classService() {
+        HSFSpringProviderBean hsfSpringProviderBean = new HSFSpringProviderBean();
+        hsfSpringProviderBean.setServiceInterface("com.scau.common.service.human.IClassService");
+        hsfSpringProviderBean.setTarget(classServiceImpl);
         hsfSpringProviderBean.setGroup(humanRpcConfig.getServiceGroup());
         hsfSpringProviderBean.setVersion(humanRpcConfig.getVersion());
         hsfSpringProviderBean.setClientTimeout(Integer.valueOf(humanRpcConfig.getTimeout()));

@@ -39,6 +39,7 @@ public class SubjectServiceImpl implements ISubjectService {
     public void addSubject(AddSubjectDto addSubjectDto) {
         Subject subject = new Subject();
         BeanUtils.copyProperties(addSubjectDto,subject);
+        subject.setAnswer(subject.getAnswer().replaceAll("\r|\n", ""));
         subjectMapper.insert(subject);
     }
 
@@ -46,6 +47,7 @@ public class SubjectServiceImpl implements ISubjectService {
     public void modifySubject(AddSubjectDto subjectDto) {
         Subject subject = new Subject();
         BeanUtils.copyProperties(subjectDto,subject);
+        subject.setAnswer(subject.getAnswer().replaceAll("\r|\n", ""));
         subjectMapper.updateById(subject);
     }
 

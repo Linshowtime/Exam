@@ -18,7 +18,11 @@ public enum ExceptionCode {
 
     EXIST_KNOWLEDGE(20001,"该知识点已存在"),
 
-    EXIST_ORG(30001,"该学校已存在");
+    EXIST_ORG(30001,"该学校已存在"),
+
+    EXIST_SUBJECT_IN_PAPER(40001,"已存在该题"),
+
+    INVALID_AUTH(50001,"认证号码有误");
     private int code;//错误码
     private String msg;//描述信息
     ExceptionCode(int code, String msg) {

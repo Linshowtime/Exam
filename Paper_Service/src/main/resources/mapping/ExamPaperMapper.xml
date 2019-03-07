@@ -8,6 +8,8 @@
     <result column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="paper_type_id" property="paperTypeId" jdbcType="INTEGER" />
     <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="period_id" property="periodId" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="DOUBLE" />
@@ -16,7 +18,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, grade_id, course_id, paper_type_id, area_id, period_id, score, create_at, 
-    update_at,type
+    update_at,type,state
   </sql>
   <select id="queryPaper" parameterType="com.scau.paperservice.model.ExamPaper" resultMap="BaseResultMap">
     select
@@ -48,8 +50,12 @@
         k.area_id=#{areaId}
         and
       </if>
-      <if test="areaId != null">
-        k.area_id=#{areaId}
+      <if test="state != null">
+        k.state=#{state}
+        and
+      </if>
+      <if test="orgId != null">
+        k.org_id=#{orgId}
         and
       </if>
       <if test="periodId != null">

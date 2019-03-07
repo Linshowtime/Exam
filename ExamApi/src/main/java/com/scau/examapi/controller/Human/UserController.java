@@ -117,6 +117,10 @@ public class UserController {
         PageResult<TeacherRepDto> teacherRepDtoPageResult =iUserService.queryTeacher(teacherDto,pageNo,pageSize);
         return ResultUtil.success(teacherRepDtoPageResult);
     }
-
+    @ApiOperation(value = "根据账号获取学校id")
+    @GetMapping("/orgId/{registerNo}")
+    public Result queryOrgId(  @PathVariable String registerNo) {
+        return ResultUtil.success(iUserService.getOrgIdByRegisterNo(registerNo));
+    }
 }
 

@@ -20,5 +20,7 @@ public class PaperRepDto implements Serializable {
     private String createDate;
     private String name;
     private String paperTypeName;
+    private Double score;
     private Integer type;
+    private Integer state;
 }

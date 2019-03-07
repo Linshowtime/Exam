@@ -26,8 +26,11 @@ public class AddPaperDto implements Serializable {
     private Integer paperTypeId;
     private Integer areaId;
     private Integer periodId;
+    @NotNull(message = "orgId不能为空")
+    private Integer orgId;
     private Integer type;
     private Integer selectCount;
     private Integer bankCount;
     private Integer judgeCount;
+    private Integer difficulty;
 }

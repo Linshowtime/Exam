@@ -62,4 +62,8 @@ public interface IUserService {
 
      void authTeacher(AuthTeacherDto authTeacherDto);
 
+     StudentRepDto findStudentByRegisterNo(String registerNo);
+
+     Integer getOrgIdByRegisterNo(String registerNo);
+
 }
