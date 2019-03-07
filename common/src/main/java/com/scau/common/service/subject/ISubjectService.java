@@ -5,6 +5,8 @@ import com.scau.common.dto.subject.SubjectReqDto;
 import com.scau.common.dto.subject.response.SubjectDto;
 import com.scau.common.protocol.PageResult;
 
+import java.util.List;
+
 /**
  * TODO
  *
@@ -17,4 +19,5 @@ public interface ISubjectService {
     void modifySubject(AddSubjectDto subjectDto);
     void removeSubjet(Integer id);
     PageResult<SubjectDto> querySubject(SubjectReqDto subjectReqDto,Integer pageNo,Integer pageSize);
+    List<SubjectDto> querySubjectByIds(List<Integer> subjectIds);
 }

@@ -5,9 +5,13 @@
 package com.scau.humanservice.test;
 
 import com.scau.common.dto.human.CourseDto;
+import com.scau.common.dto.human.LoginUserDTO;
 import com.scau.common.dto.human.RegisterUserDTO;
+import com.scau.common.dto.human.TClass.ClassDto;
+import com.scau.common.dto.human.TClass.ClassStudentDto;
 import com.scau.common.dto.human.org.OrgReqDto;
 import com.scau.common.dto.human.student.StudentDto;
+import com.scau.common.service.human.IClassService;
 import com.scau.common.service.human.ICourseService;
 import com.scau.common.service.human.IOrgService;
 import com.scau.common.service.human.IUserService;
@@ -40,6 +44,8 @@ public class SampleTest {
    private IUserService mapper;
    @Autowired
    private IOrgService iOrgService;
+   @Autowired
+   private IClassService classService;
     @Test
     public void testSelect() {
         System.out.println(("----- selectAll method test ------"));
@@ -53,14 +59,14 @@ public class SampleTest {
         System.out.println(("----- insert method test ------"));
         RegisterUserDTO user = new RegisterUserDTO();
         user.setPassword("123456");
-        user.setRegisterNo("James");
-        user.setPhone("13534538114");
+        user.setRegisterNo("LinXiuTai");
+        user.setPhone("11111111111");
         user.setRole(0);
          mapper.register(user);
         RegisterUserDTO user1 = new RegisterUserDTO();
         user1.setPassword("123456");
-        user1.setRegisterNo("Jackson");
-        user1.setPhone("18948442882");
+        user1.setRegisterNo("MISSLIN");
+        user1.setPhone("22222222222");
         user1.setRole(1);
         mapper.register(user1);
     }
@@ -77,6 +83,31 @@ public class SampleTest {
        mapper.queryStudent(new StudentDto(),1,5);
 
     }
-
-
+    @Test
+    public void testLogin(){
+        LoginUserDTO loginUserDTO = new LoginUserDTO();
+        loginUserDTO.setPassword("123456");
+        loginUserDTO.setRegisterNo("JACKSON");
+        loginUserDTO.setRole(1);
+        mapper.login(loginUserDTO);
+    }
+    @Test
+    public void testAddClass(){
+        ClassDto classDto = new ClassDto();
+        classDto.setClassName("603");
+        classDto.setRegisterNo("JACKSON");
+        classService.addClass(classDto);
+    }
+    @Test
+    public void testGetClass(){
+       List<ClassDto> classDtos =classService.searchByRegisterNo("JACKSON");
+       Assert.assertNotNull(classDtos);
+    }
+    @Test
+    public void testAddStudentToClass(){
+        ClassStudentDto classStudentDto = new ClassStudentDto();
+        classStudentDto.setClassId(1);
+        classStudentDto.setStudentNo("201525050120");
+        classService.addStudentToClass(classStudentDto);
+    }
 }

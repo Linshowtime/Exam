@@ -32,6 +32,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,13 +80,13 @@ public class UserServiceImpl implements IUserService {
               eq(User::getRole,RoleEnum.getName(userDTO.getRole())).eq(User::getStatus,0));
       if (user != null){
           if (DESUtils.decryptBasedDes(user.getPassword()).equals(userDTO.getPassword())){
-              if (RoleEnum.TEACHER.equals(userDTO.getRole())){
+              if (RoleEnum.TEACHER.getIndex().equals(userDTO.getRole())){
                   if(teacherMapper.selectOne(new QueryWrapper<Teacher>().eq("teacher_id",user.getId()).eq("state",0))!=null){
                       return 1;
                   }
                   return 0;
               }
-              if (RoleEnum.STUDENT.equals(userDTO.getRole())){
+              if (RoleEnum.STUDENT.getIndex().equals(userDTO.getRole())){
                   if(studentMapper.selectOne(new QueryWrapper<Student>().eq("student_id",user.getId()).eq("state",0))!=null){
                       return 1;
                   }
@@ -142,7 +143,10 @@ public class UserServiceImpl implements IUserService {
         Student student = new Student();
         student.setAuthStatus(1);
         student.setStudentId(studentId);
-        studentMapper.update(student,new QueryWrapper<Student>().eq("student_no",authStudentDto.getStudentNo()));
+       int record = studentMapper.update(student,new QueryWrapper<Student>().eq("student_no",authStudentDto.getStudentNo()));
+       if(record==0){
+           throw new InvalidUserException(ExceptionCode.INVALID_AUTH);
+       }
     }
 
     @Override
@@ -212,6 +216,30 @@ public class UserServiceImpl implements IUserService {
         Teacher teacher = new Teacher();
         teacher.setAuthStatus(1);
         teacher.setTeacherId(teacherId);
-        teacherMapper.update(teacher,new QueryWrapper<Teacher>().eq("teacher_no",authTeacherDto.getTeacherNo()));
+       int record = teacherMapper.update(teacher,new QueryWrapper<Teacher>().eq("teacher_no",authTeacherDto.getTeacherNo()));
+       if(record==0){
+           throw new InvalidUserException(ExceptionCode.INVALID_AUTH);
+       }
+    }
+
+    @Override
+    public StudentRepDto findStudentByRegisterNo(String registerNo) {
+       User user= userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getRegisterNo,registerNo));
+       Student student = studentMapper.selectOne(new LambdaQueryWrapper<Student>().eq(Student::getStudentId,user.getId()));
+        StudentRepDto studentRepDto = new StudentRepDto();
+        BeanUtils.copyProperties(student,studentRepDto);
+        return studentRepDto;
+    }
+
+    @Override
+    public Integer getOrgIdByRegisterNo(String registerNo) {
+        User user= userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getRegisterNo,registerNo));
+        Student student = studentMapper.selectOne(new LambdaQueryWrapper<Student>().eq(Student::getStudentId,user.getId()));
+        if(student!=null){
+           return student.getOrgId();
+        }
+       else{
+         return teacherMapper.selectOne(new LambdaQueryWrapper<Teacher>().eq(Teacher::getTeacherId,user.getId())).getOrgId();
+        }
     }
 }
