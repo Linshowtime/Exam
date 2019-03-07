@@ -158,6 +158,7 @@ public class PaperServiceImpl implements IPaperService {
             paperRepDto.setName(e.getName());
             paperRepDto.setType(e.getType());
             paperRepDto.setScore(e.getScore());
+            paperRepDto.setState(e.getState());
             paperRepDto.setCreateDate(sdf.format(e.getCreateAt()));
             paperRepDto.setPaperTypeName(examTypeMapper.selectById(e.getPaperTypeId()).getName());
             paperRepDtos.add(paperRepDto);
